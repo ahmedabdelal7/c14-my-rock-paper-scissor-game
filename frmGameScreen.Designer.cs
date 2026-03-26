@@ -60,9 +60,9 @@
             this.label1.ForeColor = System.Drawing.Color.Firebrick;
             this.label1.Location = new System.Drawing.Point(354, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(534, 59);
+            this.label1.Size = new System.Drawing.Size(542, 59);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Roce-Paper-Scissor";
+            this.label1.Text = "Rock-Paper-Scissor";
             // 
             // label2
             // 

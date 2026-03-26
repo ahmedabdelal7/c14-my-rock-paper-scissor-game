@@ -45,9 +45,9 @@
             this.label1.ForeColor = System.Drawing.Color.Gold;
             this.label1.Location = new System.Drawing.Point(239, 127);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(748, 66);
+            this.label1.Size = new System.Drawing.Size(758, 66);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Roce-Paper-Scissor Game";
+            this.label1.Text = "Rock-Paper-Scissor Game";
             // 
             // label2
             // 
