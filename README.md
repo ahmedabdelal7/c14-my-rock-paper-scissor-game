@@ -68,4 +68,7 @@ The player competes against the computer by choosing one of the three options, a
 ---
 
 ## 📥 Download
-[Download Project]([https://github.com/your-username/rock-paper-scissors/archive/refs/heads/main.zip](https://github.com/ahmedabdelal7/c14-my-rock-paper-scissor-game/releases/download/v1.0/Rock-Paper-scissors.Game.exe))
+
+[![EXE](https://img.shields.io/badge/EXE-Download%20Game-brightgreen?style=for-the-badge&logo=windows)](https://github.com/ahmedabdelal7/c14-my-rock-paper-scissor-game/releases/download/v1.0/Rock-Paper-scissors.Game.exe)
+
+[![Source](https://img.shields.io/badge/Source-Code-blue?style=for-the-badge&logo=github)](https://github.com/ahmedabdelal7/c14-my-rock-paper-scissor-game/archive/refs/heads/main.zip)
