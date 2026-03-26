@@ -23,7 +23,7 @@ The player competes against the computer by choosing one of the three options, a
 
 ---
 
-<img width="625" height="320" alt="image" src="https://github.com/user-attachments/assets/8c7edc78-6016-4dfb-97cf-05530ebc104e" />
+<img width="625" height="320" alt="image" src="https://github.com/user-attachments/assets/94f83042-393b-488d-b7ce-41260c0f8ee9" />
 
 ---
 
