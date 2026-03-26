@@ -34,7 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblPlayerWonsCount = new System.Windows.Forms.Label();
+            this.lblPlayerWinsCount = new System.Windows.Forms.Label();
             this.lblCompWonsCount = new System.Windows.Forms.Label();
             this.btnRock = new System.Windows.Forms.Button();
             this.btnPaper = new System.Windows.Forms.Button();
@@ -112,18 +112,18 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Comp";
             // 
-            // lblPlayerWonsCount
+            // lblPlayerWinsCount
             // 
-            this.lblPlayerWonsCount.AutoSize = true;
-            this.lblPlayerWonsCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblPlayerWonsCount.Font = new System.Drawing.Font("Snap ITC", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerWonsCount.ForeColor = System.Drawing.Color.SpringGreen;
-            this.lblPlayerWonsCount.Location = new System.Drawing.Point(1049, 318);
-            this.lblPlayerWonsCount.Name = "lblPlayerWonsCount";
-            this.lblPlayerWonsCount.Size = new System.Drawing.Size(40, 36);
-            this.lblPlayerWonsCount.TabIndex = 5;
-            this.lblPlayerWonsCount.Tag = "0";
-            this.lblPlayerWonsCount.Text = "0";
+            this.lblPlayerWinsCount.AutoSize = true;
+            this.lblPlayerWinsCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblPlayerWinsCount.Font = new System.Drawing.Font("Snap ITC", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayerWinsCount.ForeColor = System.Drawing.Color.SpringGreen;
+            this.lblPlayerWinsCount.Location = new System.Drawing.Point(1049, 318);
+            this.lblPlayerWinsCount.Name = "lblPlayerWinsCount";
+            this.lblPlayerWinsCount.Size = new System.Drawing.Size(40, 36);
+            this.lblPlayerWinsCount.TabIndex = 5;
+            this.lblPlayerWinsCount.Tag = "0";
+            this.lblPlayerWinsCount.Text = "0";
             // 
             // lblCompWonsCount
             // 
@@ -152,7 +152,7 @@
             this.btnRock.Name = "btnRock";
             this.btnRock.Size = new System.Drawing.Size(185, 165);
             this.btnRock.TabIndex = 7;
-            this.btnRock.Tag = "1";
+            this.btnRock.Tag = "Rock";
             this.btnRock.UseVisualStyleBackColor = false;
             this.btnRock.Click += new System.EventHandler(this.btn_Click);
             // 
@@ -170,7 +170,7 @@
             this.btnPaper.Name = "btnPaper";
             this.btnPaper.Size = new System.Drawing.Size(185, 165);
             this.btnPaper.TabIndex = 8;
-            this.btnPaper.Tag = "2";
+            this.btnPaper.Tag = "Paper";
             this.btnPaper.UseVisualStyleBackColor = false;
             this.btnPaper.Click += new System.EventHandler(this.btn_Click);
             // 
@@ -188,7 +188,7 @@
             this.btnScissor.Name = "btnScissor";
             this.btnScissor.Size = new System.Drawing.Size(185, 165);
             this.btnScissor.TabIndex = 9;
-            this.btnScissor.Tag = "3";
+            this.btnScissor.Tag = "Scissor";
             this.btnScissor.UseVisualStyleBackColor = false;
             this.btnScissor.Click += new System.EventHandler(this.btn_Click);
             // 
@@ -351,7 +351,7 @@
             this.Controls.Add(this.btnPaper);
             this.Controls.Add(this.btnRock);
             this.Controls.Add(this.lblCompWonsCount);
-            this.Controls.Add(this.lblPlayerWonsCount);
+            this.Controls.Add(this.lblPlayerWinsCount);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -377,7 +377,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblPlayerWonsCount;
+        private System.Windows.Forms.Label lblPlayerWinsCount;
         private System.Windows.Forms.Label lblCompWonsCount;
         private System.Windows.Forms.Button btnRock;
         private System.Windows.Forms.Button btnPaper;

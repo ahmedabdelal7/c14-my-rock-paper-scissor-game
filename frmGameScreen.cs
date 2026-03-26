@@ -40,7 +40,7 @@ namespace _5_Rock_Paper_scissors_Game
 
         struct stGameResults
         {
-            public short PlayerWonsCount;
+            public short PlayerWinsCount;
             public short CompWonsCount;
             public short DrawCount;
 
@@ -48,14 +48,13 @@ namespace _5_Rock_Paper_scissors_Game
         stGameResults GameResults = new stGameResults();
         enum chChoice
         {
-            Rock =1,
+            Rock,
             Paper,
-            Scissor,
-            NoChoice
+            Scissor
         }
         enum enRoundResult
         {
-            Won =1,
+            Win =1,
             Lose,
             Draw
         }
@@ -69,144 +68,114 @@ namespace _5_Rock_Paper_scissors_Game
 
         stRoundStatus RoundStatus = new stRoundStatus();
 
-        void UpdateGameResults()
-        {
-            lblPlayerWonsCount.Text = GameResults.PlayerWonsCount.ToString();
-            lblCompWonsCount.Text = GameResults.CompWonsCount.ToString();
-
-            lblDrawCount.Text = GameResults.DrawCount.ToString();
-
-            lblRoundCount.Text = (GameResults.PlayerWonsCount +
-                GameResults.CompWonsCount +
-                GameResults.DrawCount).ToString();
-        }
-
+        //-------Those Function For UI---------
         void UpdateResultLabelColor()
         {
             if (RoundStatus.Result == enRoundResult.Draw)
                 lblRoundResult.ForeColor = Color.DodgerBlue;
 
-            else if (RoundStatus.Result == enRoundResult.Won)
+            else if (RoundStatus.Result == enRoundResult.Win)
                 lblRoundResult.ForeColor = Color.LimeGreen;
 
             else if (RoundStatus.Result == enRoundResult.Lose)
                 lblRoundResult.ForeColor = Color.Firebrick;
         }
-        string GetChoiceText(chChoice player)
-        {
-            
-            if (player == chChoice.Rock)
-                return "Rock";
-            else if (player == chChoice.Paper)
-                return "Paper";
-            else 
-                return "Scissor";
-        }
-        void UpdateRoundStatusMessage(string message)
+        void UpdateRoundStatusMessage()
         {
 
-            lblCompChoice.Text = GetChoiceText(RoundStatus.CompChoice);
+            lblCompChoice.Text = RoundStatus.CompChoice.ToString();
 
-            lblPlayerChoice.Text = GetChoiceText(RoundStatus.PlayerChoice);
+            lblPlayerChoice.Text = RoundStatus.PlayerChoice.ToString();
 
-            lblRoundResult.Text = message;
+            lblRoundResult.Text = RoundStatus.Result.ToString();
 
             //Update Result Color
-            UpdateResultLabelColor();    
-
+            UpdateResultLabelColor();
 
         }
-        enRoundResult RoundResult()
+        void UpdateGameResults()
         {
-            if (RoundStatus.PlayerChoice == RoundStatus.CompChoice)
+            lblPlayerWinsCount.Text = GameResults.PlayerWinsCount.ToString();
+
+            lblCompWonsCount.Text = GameResults.CompWonsCount.ToString();
+
+            lblDrawCount.Text = GameResults.DrawCount.ToString();
+
+            lblRoundCount.Text = (GameResults.PlayerWinsCount +
+                GameResults.CompWonsCount +
+                GameResults.DrawCount).ToString();
+        }
+        void UpdateScreenInformation()
+        {
+            UpdateGameResults();
+            UpdateRoundStatusMessage();
+
+        }
+        //-------------------------------------
+        enRoundResult RoundResult(chChoice player, chChoice comp)
+        {
+            if (player == comp)
                 return enRoundResult.Draw;
 
-            if (RoundStatus.PlayerChoice == chChoice.Paper)
-            {
-                if (RoundStatus.CompChoice == chChoice.Rock)
-                    return enRoundResult.Won;
+            if ((player == chChoice.Rock && comp == chChoice.Scissor) ||
+                (player == chChoice.Paper && comp == chChoice.Rock) ||
+                (player == chChoice.Scissor && comp == chChoice.Paper))
+                return enRoundResult.Win;
 
-                //Player Choice is Scissor
-                else if (RoundStatus.CompChoice == chChoice.Scissor) 
-                    return enRoundResult.Lose;
-
-            }if(RoundStatus.PlayerChoice == chChoice.Rock)
-            {
-                if (RoundStatus.CompChoice == chChoice.Paper)
-                    return enRoundResult.Lose;
-
-                //Computer choice is Scissor 
-                else
-                    return enRoundResult.Won;
-            }
-            else//Player Choice is Scissor
-            {
-                if (RoundStatus.CompChoice == chChoice.Paper)
-                    return enRoundResult.Won;
-
-                //Comp Choice is Rock
-                else 
-                    return enRoundResult.Lose;
-            }
+            return enRoundResult.Lose;
         }
-        void FindWinner()
+        void PlayRound()
         {
+            RoundStatus.Result = RoundResult(RoundStatus.PlayerChoice, RoundStatus.CompChoice);
 
-            switch(RoundResult()){ 
-                
-                case enRoundResult.Draw:
-                    GameResults.DrawCount++;
-/*                    GameResults.PlayerWonsCount++;
-                    GameResults.CompWonsCount++;*/
-                    RoundStatus.Result = enRoundResult.Draw;
-                    UpdateRoundStatusMessage("Draw");
-                    break;
-                case enRoundResult.Won:
-                    GameResults.PlayerWonsCount++;
-                    RoundStatus.Result = enRoundResult.Won;
-                    UpdateRoundStatusMessage("Won");
-                    break;
-                case enRoundResult.Lose:
-                    GameResults.CompWonsCount++;
-                    RoundStatus.Result = enRoundResult.Lose;
-                    UpdateRoundStatusMessage("Lose");
-                    break;                
+            enRoundResult result = RoundStatus.Result;
+
+            if (result == enRoundResult.Draw)
+            {
+                GameResults.DrawCount++;//draw
+                return;
             }
-            UpdateGameResults();
-        }
-        chChoice MakeChoice(short choice)
-        {
-            if (choice == (short)chChoice.Rock)
-                return chChoice.Rock;
-            if (choice == (short)chChoice.Paper)
-                return chChoice.Paper;
+            if(result == enRoundResult.Win)
+            {
+                GameResults.PlayerWinsCount++;//win
+                return;
+            }
             else
-                return chChoice.Scissor;
+                GameResults.CompWonsCount++; //lose    
         }
-
-        short GetRandomNumber(int from, int to)
+        Random random = new Random();
+        chChoice GetRandomComputerChoice()
         {
-            Random random = new Random();
-            return (short)random.Next(from, to);
-
+            return (chChoice)random.Next(0, 3);
         }
-
+        chChoice GetPlayerChoiceFromTag(Button btn)
+        {
+            return (chChoice)Enum.Parse(typeof(chChoice), btn.Tag.ToString());
+        }
         void StartRound(Button btn)
         {          
 
             btnResetRounds.Enabled = true;
-            RoundStatus.PlayerChoice = MakeChoice(Convert.ToInt16(btn.Tag));
-            RoundStatus.CompChoice = MakeChoice(GetRandomNumber(1,4));
-            FindWinner();
+
+            RoundStatus.PlayerChoice = GetPlayerChoiceFromTag(btn);
+
+            RoundStatus.CompChoice = GetRandomComputerChoice();
+
+            //find round result and update GamesValues
+            PlayRound();
+            
+            //Update Screen Information
+            UpdateScreenInformation();
         }
 
         void ResetGame()
         {
             btnResetRounds.Enabled = false;
-            GameResults.PlayerWonsCount = 0;
+            GameResults.PlayerWinsCount = 0;
             GameResults.CompWonsCount = 0;
             GameResults.DrawCount = 0;
-
+           
+            //Resete Game Result
             UpdateGameResults();
 
             lblRoundResult.Text = "";
